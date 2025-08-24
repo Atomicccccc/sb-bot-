@@ -1,0 +1,35 @@
+import random
+import discord
+import requests
+import json
+
+def get_curse():
+    response = requests.get()
+
+class MyClient(discord.Client):
+    async def on_ready(self):
+        print(f'Logged in as {self.user} (ID: {self.user.id})')
+        print('------')
+
+    async def on_message(self, message):
+        if message.author == self.user:
+            return
+        if message.content.startswith('hello'):
+            await message.channel.send('Hello Human!')
+        if message.content.startswith(('roll D20' , 'ROLL D20' , 'Roll D20'  , 'roll a D20' , 'ROLL A D20' , 'roll a d20' , 'ROLL A D20')):
+            r = random.randint(1, 20)
+            await message.channel.send(f'You rolled a {r}!')
+        if message.content.startswith(('roll die' , 'ROLL DIE' , 'Roll die' , 'roll a die' , 'ROLL A DIE' , 'roll a d6' , 'ROLL A D6')):
+            d = random.randint(1, 6)
+            await message.channel.send(f'You rolled a {d}!')
+        if message.content.startswith('Throw slurs at '):
+            if message.mentions:
+                target = message.mentions[0].display_name
+                await message.channel.send(f'{target}, you fat pig! You are a disgrace to humanity!')
+            else:
+                await message.channel.send('Please mention a user to throw slurs at.')
+intents = discord.Intents.default()
+intents.message_content = True
+
+
+  
