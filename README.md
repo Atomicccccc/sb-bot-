@@ -1,2 +1,3 @@
 # sb-bot-
-A bot I made for fun
+A bot I made in free time
+
